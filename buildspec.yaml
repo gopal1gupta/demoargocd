@@ -1,0 +1,23 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    DOCKERHUB_PASS: "arn:aws:secretsmanager:ap-south-1:895680759485:secret:dockerhub-Y24wXP:password"
+    DOCKERHUB_USERNAME: "arn:aws:secretsmanager:ap-south-1:895680759485:secret:dockerhub-Y24wXP:username"
+phases:
+  install:
+    commands:
+      - echo pre_build step...
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t week4 .
+      - docker tag  week4:latest gopalgupta123456789/week4:latest
+      - docker push gopalgupta123456789/week4:latest
+    post_build:
+      commands:
+        - echo Build completed on `date`
