@@ -9,4 +9,4 @@ spec:
   ports:
     - port: 80         # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
       targetPort: 80   # Optional field.
-      nodePort: 3007
+      nodePort: 30017
