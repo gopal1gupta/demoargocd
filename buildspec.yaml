@@ -16,7 +16,7 @@ phases:
       - echo pre_build step...
       - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
       - echo configuring git credential
-      - git clone https://github.com/gopal1gupta/demoargocd
+      - git clone https://github.com/gopal1gupta/k8smanifest.git
       - ls
       - sed --version 
 
@@ -31,11 +31,11 @@ phases:
       - docker build -t week4 .
       - docker tag  week4:latest ${IMAGE_REPO}/${NAME}:$CODEBUILD_BUILD_NUMBER
       - docker push ${IMAGE_REPO}/${NAME}:$CODEBUILD_BUILD_NUMBER
-      - cd demoargocd
+      - cd k8smanifest
       - sed -i "s|gopalgupta12345678.*|${IMAGE_REPO}/${NAME}:$CODEBUILD_BUILD_NUMBER|g" deployment.yaml
       - git config --global user.email "gopalgupta8013@gmail.com"
       - git config --global user.name "gopal1gupta"
-      - git remote set-url origin "https://${GIT_TOKEN}@github.com/gopal1gupta/demoargocd"
+      - git remote set-url origin "https://${GIT_TOKEN}@github.com/gopal1gupta/k8smanifest"
       - git branch
       - git remote -v
       - git add .
