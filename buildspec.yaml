@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   secrets-manager:
-    DOCKERHUB_PASS: "arn:aws:secretsmanager:ap-south-1:895680759485:secret:dockerhub-Y24wXP:password"
-    DOCKERHUB_USERNAME: "arn:aws:secretsmanager:ap-south-1:895680759485:secret:dockerhub-Y24wXP:username"
+    DOCKERHUB_PASS: "arn:aws:secretsmanager:ap-south-1:${AWS_ACCOUNT_NO}:secret:dockerhub-Y24wXP:password"
+    DOCKERHUB_USERNAME: "arn:aws:secretsmanager:ap-south-1:${AWS_ACCOUNT_NO}:secret:dockerhub-Y24wXP:username"
 phases:
   install:
     commands:
