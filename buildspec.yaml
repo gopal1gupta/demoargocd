@@ -13,7 +13,7 @@ phases:
       - echo configuring git credential
       - git config --global user.email "gopalgupta8013@gmail.com"
       #- git config --global user.name "gopal1gupta"
-      - git remote set url origin "http://${GIT_TOKEN}@github.com/gopal1gupta/demoargocd"
+      - git remote set-url origin "http://${GIT_TOKEN}@github.com/gopal1gupta/demoargocd"
       - git clone https://github.com/gopal1gupta/demoargocd
       - ls
 
