@@ -18,7 +18,9 @@ phases:
       - ls
       - sed --version
       - yum install sed -y
+      - yum install update 
       - sed --version
+      - sed -i 's/"gopalgupta123456789/week4:latest"/"${IMAGE_REPO}/${NAME}:${TAG}"/g' deployment.yaml
 
 
   build:
@@ -28,7 +30,7 @@ phases:
       - docker build -t week4 .
       - docker tag  week4:latest ${IMAGE_REPO}/${NAME}:${TAG}
       - docker push ${IMAGE_REPO}/${NAME}:${TAG}
-      - sed -i 's/"gopalgupta123456789/week4:latest"/"${IMAGE_REPO}/${NAME}:${TAG}"/g' deployment.yaml
+  
       - git add .
       - git commit -m "updating deployment.yaml"
       - git push
