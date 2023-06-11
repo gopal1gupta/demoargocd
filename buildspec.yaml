@@ -17,9 +17,9 @@ phases:
       - git clone https://github.com/gopal1gupta/demoargocd
       - ls
       - sed --version
-      #- apt-get install sed -y
-      #- apt-get install update 
-      #- sed --version
+      - apt-get install sed -y
+      - apt-get update 
+      - sed --version
       - sed -i 's/"gopalgupta123456789/week4:latest"/"${IMAGE_REPO}/${NAME}:${TAG}"/g' deployment.yaml
 
 
