@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    DOCKERHUB_PASS: "arn:aws:secretsmanager:${AWS_REGION}:${AWS_ACCOUNT_NO}:secret:dockerhub-Y24wXP:password"
+    DOCKERHUB_USERNAME: "arn:aws:secretsmanager:${AWS_REGION}:${AWS_ACCOUNT_NO}:secret:dockerhub-Y24wXP:username"
+    GIT_TOKEN: "arn:aws:secretsmanager:${AWS_REGION}:${AWS_ACCOUNT_NO}:secret:dockerhub-Y24wXP:git_token"
+phases:
+  install:
+    commands:
+      - echo pre_build step...
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
+      - echo configuring git credential
+      - git config --global user.email "gopalgupta8013@gmail.com"
+      #- git config --global user.name "gopal1gupta"
+      - git remote set url origin "http://${GIT_TOKEN}@github.com/gopal1gupta/demoargocd
+      - git clone https://github.com/gopal1gupta/demoargocd
+      - ls
+
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t week4 .
+      - docker tag  week4:latest ${IMAGE_REPO}/${NAME}:${TAG}
+      - docker push ${IMAGE_REPO}/${NAME}:${TAG}
+      - sed -i 's/"gopalgupta123456789/week4:latest"/"${IMAGE_REPO}/${NAME}:${TAG}"/g' deployment.yaml
+      - git add .
+      - git commit -m "updating deployment.yaml"
+      - git push
+
+    post_build:
+      commands:
+        - echo Build completed on `date`
