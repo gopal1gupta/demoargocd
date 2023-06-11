@@ -16,6 +16,8 @@ phases:
       - git remote set-url origin "http://${GIT_TOKEN}@github.com/gopal1gupta/demoargocd"
       - git clone https://github.com/gopal1gupta/demoargocd
       - ls
+      - sed --version
+      - sudo yum install sed
 
 
   build:
