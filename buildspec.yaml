@@ -16,7 +16,9 @@ phases:
       - git remote set-url origin "http://${GIT_TOKEN}@github.com/gopal1gupta/demoargocd"
       - git clone https://github.com/gopal1gupta/demoargocd
       - ls
-      - sed --version
+      - sed --version 
+      - git branch
+      - git remote -v
 
       
 
@@ -32,7 +34,7 @@ phases:
   
       - git add .
       - git commit -m "updating deployment.yaml"
-      - git push
+      - git push origin 
 
     post_build:
       commands:
