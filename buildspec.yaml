@@ -26,7 +26,7 @@ phases:
       - docker build -t week4 .
       - docker tag  week4:latest ${IMAGE_REPO}/${NAME}:${TAG}
       - docker push ${IMAGE_REPO}/${NAME}:${TAG}
-      - sed -i 's|gopalgupta123456789/week4:latest|${IMAGE_REPO}/${NAME}:${TAG}|g' deployment.yaml
+      - sed -i "s|gopalgupta123456789/week4:latest|${IMAGE_REPO}/${NAME}:${TAG}|g" deployment.yaml
       - git config --global user.email "gopalgupta8013@gmail.com"
       - git config --global user.name "gopal1gupta"
       - git remote set-url origin "https://${GIT_TOKEN}@github.com/gopal1gupta/demoargocd"
