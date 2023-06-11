@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: ${IMAGE_REPO}/${NAME}:${TAG}
+        image: gopalgupta123456789/week4:latest
         ports:
         - containerPort: 80
 
